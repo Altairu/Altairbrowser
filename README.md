@@ -179,4 +179,5 @@ backStack.add(Browser(url = "https://$host:$port"))
 
 ## 📄 ライセンス
 
-Private / All rights reserved.
+このプロジェクトは [Apache License 2.0](LICENSE) の下でライセンスされています。  
+詳細は `LICENSE` ファイルをご確認ください。
