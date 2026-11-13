@@ -4,21 +4,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 
-// 常にダークテーマを使用（ブラウザアプリのため）
+// 常にダークテーマを使用
 private val DarkColorScheme = darkColorScheme(
-    primary = ElectricBlue,
+    primary = AccentBlue,
     onPrimary = TextPrimary,
-    primaryContainer = ElectricBlueDark,
+    primaryContainer = AccentBlueMuted,
     onPrimaryContainer = TextPrimary,
-    secondary = ElectricBlueLight,
-    onSecondary = DeepNavy,
-    background = DeepNavy,
+    secondary = AccentBlue,
+    onSecondary = BackgroundDark,
+    background = BackgroundDark,
     onBackground = TextPrimary,
-    surface = NavyCard,
+    surface = SurfaceDark,
     onSurface = TextPrimary,
-    surfaceVariant = NavySurface,
+    surfaceVariant = SurfaceElevated,
     onSurfaceVariant = TextSecondary,
-    outline = NavyBorder,
+    outline = BorderSubtle,
     error = ErrorRed,
     onError = TextPrimary,
 )

@@ -2,26 +2,21 @@ package com.example.altairbrowser.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ダークテーマ用カラーパレット（ディープブルー系）
-val DeepNavy = Color(0xFF0A0E1A)
-val NavyCard = Color(0xFF111827)
-val NavySurface = Color(0xFF1A2235)
-val NavyBorder = Color(0xFF2A3550)
+// ミニマルダークテーマ用カラーパレット
+val BackgroundDark = Color(0xFF0C0E12)
+val SurfaceDark = Color(0xFF14171D)
+val SurfaceElevated = Color(0xFF1C2028)
+val BorderSubtle = Color(0xFF262B35)
 
-// アクセントカラー（エレクトリックブルー）
-val ElectricBlue = Color(0xFF3B82F6)
-val ElectricBlueLight = Color(0xFF60A5FA)
-val ElectricBlueDark = Color(0xFF1D4ED8)
+// アクセントカラー
+val AccentBlue = Color(0xFF5E8BFF)
+val AccentBlueMuted = Color(0xFF3B66D4)
 
 // テキストカラー
-val TextPrimary = Color(0xFFE2E8F0)
-val TextSecondary = Color(0xFF94A3B8)
-val TextHint = Color(0xFF475569)
+val TextPrimary = Color(0xFFF3F4F6)
+val TextSecondary = Color(0xFF9CA3AF)
+val TextMuted = Color(0xFF5A6270)
 
-// 成功・エラー
-val SuccessGreen = Color(0xFF10B981)
+// ステータスカラー
+val SuccessGreen = Color(0xFF22C55E)
 val ErrorRed = Color(0xFFEF4444)
-
-// グラジエント用
-val GradientStart = Color(0xFF1E3A5F)
-val GradientEnd = Color(0xFF0A0E1A)

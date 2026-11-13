@@ -12,7 +12,8 @@
 | アドレス入力 | ホスト名/IP とポート番号を別フィールドで入力 |
 | 履歴 | 最新20件を新しい順に表示。タップで即接続 |
 | 履歴削除 | 個別削除（スワイプまたは×ボタン）・全件削除 |
-| 全画面表示 | タブなし・ステータスバーなしの完全全画面 WebView |
+| 全画面表示 | タブなし・ステータスバーなしの完全全画面 WebView（動画・Canvas等の横画面フルスクリーン対応） |
+| 自動更新 | GitHub Releases から最新 APK を取得しアプリ内から上書き更新 |
 | 戻るボタン | WebView 内を戻れる限り戻る → それ以上はホーム画面へ |
 | HTTP 専用 | `http://` のみ対応（ローカルネットワーク専用） |
 | エラー表示 | 接続失敗時にエラー画面を表示 |
@@ -43,7 +44,7 @@
 ### 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/106no/Altairbrowser.git
+git clone https://github.com/Altairu/Altairbrowser.git
 cd Altairbrowser
 ```
 
@@ -170,6 +171,14 @@ backStack.add(Browser(url = "https://$host:$port"))
 ---
 
 ## 🔄 アップデート手順
+
+### GitHub Releases を使った自動更新
+
+1. GitHub 上で `v1.2.0` などのタグを作成してプッシュすると GitHub Actions が自動でリリースビルドと APK 公開を行います
+2. アプリを起動するかホーム画面の「更新確認」ボタンを押すと新しいバージョンが検知されます
+3. ダイアログから「更新する」を押すと APK がダウンロードされインストーラーが起動します
+
+### 手動でビルド・インストールする場合
 
 1. コードを修正
 2. 再ビルド：`.\gradlew.bat assembleDebug`

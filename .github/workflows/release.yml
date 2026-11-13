@@ -1,0 +1,65 @@
+name: Build and Release APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'リリースするバージョン名 (例: 1.2.0)'
+        required: true
+        default: '1.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: JDK 17 をセットアップ
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle をセットアップ
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: バージョン情報を決定
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            TAG_NAME="v${{ github.event.inputs.version_name }}"
+            VERSION_NAME="${{ github.event.inputs.version_name }}"
+          else
+            TAG_NAME="${GITHUB_REF_NAME}"
+            VERSION_NAME="${TAG_NAME#v}"
+          fi
+          VERSION_CODE=$(( $(git rev-list --count HEAD) + 1 ))
+          echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
+          echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "version_code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+
+      - name: リリース APK をビルド
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleRelease \
+            -PversionName="${{ steps.version.outputs.version_name }}" \
+            -PversionCode="${{ steps.version.outputs.version_code }}"
+
+      - name: GitHub Release に APK を公開
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag_name }}
+          name: Altair Browser ${{ steps.version.outputs.tag_name }}
+          generate_release_notes: true
+          files: |
+            app/build/outputs/apk/release/app-release.apk
